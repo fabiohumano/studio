@@ -11,16 +11,26 @@
         body {
             font-family: 'Inter', sans-serif;
             scroll-behavior: smooth;
-            background-color: #0a0a0a;
+            background-color: #000;
+            margin: 0;
+            padding: 0;
+            color: #fff;
+        }
+        #root {
+            min-height: 100vh;
         }
     </style>
+    <script>
+        // Previne erro de 'process is not defined' que quebra o React em alguns ambientes de produção
+        window.process = { env: { NODE_ENV: 'production' } };
+    </script>
     <script type="importmap">
 {
   "imports": {
     "react": "https://esm.sh/react@19.0.0",
     "react-dom": "https://esm.sh/react-dom@19.0.0",
     "react-dom/client": "https://esm.sh/react-dom@19.0.0/client",
-    "lucide-react": "https://esm.sh/lucide-react@0.460.0",
+    "lucide-react": "https://esm.sh/lucide-react@0.460.0?bundle",
     "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
     "react/": "https://esm.sh/react@^19.2.3/"
   }
@@ -30,14 +40,8 @@
 </head>
 <body class="bg-neutral-950 text-neutral-100">
     <div id="root">
-        <div class="h-screen w-screen flex items-center justify-center bg-black">
-            <div class="text-neutral-500 animate-pulse font-light tracking-widest uppercase text-sm">
-                Carregando Experiência...
-            </div>
-        </div>
+        <!-- O conteúdo será montado pelo React aqui -->
     </div>
-    <!-- Script crucial para o funcionamento do React no navegador -->
-    <script type="module" src="index.tsx"></script>
 <script type="module" src="/index.tsx"></script>
 </body>
 </html>
