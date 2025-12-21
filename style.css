@@ -1,0 +1,17 @@
+
+/* Estilos base */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Ajustes para imagens */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Transições suaves */
+.transition-all {
+    transition: all 0.3s ease;
+}
