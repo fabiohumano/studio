@@ -5,18 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HUMANO Studio | Fabio Benedetti</title>
     
-    <!-- Meta Tags para Compartilhamento Profissional (Cartão de Visita Digital) -->
-    <meta name="description" content="HUMANO Studio - Onde a essência humana encontra a vibração da arte e a tecnologia do som. Produção musical por Fabio Benedetti.">
+    <!-- CONFIGURAÇÃO DO CARTÃO DE VISITA PARA WHATSAPP -->
+    <!-- Fabio: Salve sua imagem como "cartao.jpg" no seu GitHub para isso funcionar! -->
+    <meta name="description" content="HUMANO Studio - Onde a essência humana encontra a vibração da arte e a tecnologia do som.">
     <meta property="og:title" content="HUMANO Studio | Fabio Benedetti">
-    <meta property="og:description" content="Onde a essência humana encontra a vibração da arte e a tecnologia do som. Produções Musicais e Trilhas Sonoras.">
+    <meta property="og:description" content="Produções Musicais e Trilhas Sonoras. Clique para conhecer meu trabalho.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://fabiohumano.github.io/studio/">
     
-    <!-- IMAGEM DO CARTÃO DE VISITA (A que você enviou) -->
-    <!-- Fabio: Quando você subir sua imagem editada para o GitHub, substitua o link abaixo pelo link dela -->
-    <meta property="og:image" content="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200&auto=format&fit=crop"> 
+    <!-- Este link abaixo é o que o WhatsApp vai ler -->
+    <meta property="og:image" content="https://fabiohumano.github.io/studio/cartao.jpg">
+    <meta property="og:image:secure_url" content="https://fabiohumano.github.io/studio/cartao.jpg">
+    <meta property="og:image:type" content="image/jpeg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
+    
     <meta name="twitter:card" content="summary_large_image">
 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -29,22 +32,20 @@
         .scroll-mt { scroll-margin-top: 5rem; }
         .card-art { background: rgba(23, 23, 23, 0.6); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.05); transition: all 0.5s ease; }
         .card-art:hover { border-color: rgba(255,255,255,0.3); transform: translateY(-5px); }
-        .aspect-video iframe { width: 100%; height: 100%; border-radius: 1rem; }
         
         .social-icon { 
-            color: rgba(255,255,255,0.8); 
+            color: rgba(255,255,255,0.7); 
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
         }
         .social-icon:hover { 
             color: #ffffff; 
-            transform: scale(1.25); 
+            transform: scale(1.3); 
             filter: drop-shadow(0 0 15px rgba(255,255,255,0.6));
         }
 
-        /* Fundo Espacial Hero */
         .hero-bg {
             position: relative;
-            background-image: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(10,10,10,1)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop');
+            background-image: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(10,10,10,1)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -62,15 +63,15 @@
 <body class="overflow-x-hidden selection:bg-white selection:text-black">
     <div class="bg-grain"></div>
 
-    <nav class="fixed w-full z-50 transition-all duration-500 border-b border-white/5" id="main-nav">
+    <nav class="fixed w-full z-50 transition-all duration-500 border-b border-white/5 bg-black/50 backdrop-blur-md" id="main-nav">
         <div class="max-w-7xl mx-auto px-6 lg:px-12">
-            <div class="flex justify-between items-center h-24">
-                <a href="#home" class="text-2xl font-bold tracking-tighter">HUMANO<span class="text-neutral-500 font-light italic">Studio</span></a>
+            <div class="flex justify-between items-center h-20">
+                <a href="#home" class="text-xl font-bold tracking-tighter">HUMANO<span class="text-neutral-500 font-light italic">Studio</span></a>
                 <div class="hidden md:flex items-center space-x-10">
-                    <a href="#home" class="text-neutral-400 hover:text-white text-xs uppercase tracking-widest">Início</a>
-                    <a href="#portfolio" class="text-neutral-400 hover:text-white text-xs uppercase tracking-widest">Trabalhos</a>
-                    <a href="#galeria" class="text-neutral-400 hover:text-white text-xs uppercase tracking-widest">Galeria</a>
-                    <a href="admin.html" class="text-neutral-600 hover:text-white text-[10px] uppercase border border-white/10 px-3 py-1 rounded">Admin</a>
+                    <a href="#home" class="text-neutral-400 hover:text-white text-[10px] uppercase tracking-widest">Início</a>
+                    <a href="#portfolio" class="text-neutral-400 hover:text-white text-[10px] uppercase tracking-widest">Trabalhos</a>
+                    <a href="#galeria" class="text-neutral-400 hover:text-white text-[10px] uppercase tracking-widest">Estúdio</a>
+                    <a href="admin.html" class="text-neutral-600 hover:text-white text-[9px] uppercase border border-white/10 px-3 py-1 rounded">Admin</a>
                 </div>
             </div>
         </div>
@@ -79,43 +80,45 @@
     <section id="home" class="relative min-h-screen flex items-center justify-center px-6 hero-bg">
         <div class="hero-overlay"></div>
         <div class="relative z-10 text-center max-w-5xl">
-            <h2 class="text-6xl md:text-9xl font-bold tracking-tighter mb-8 leading-none drop-shadow-2xl">A Arte de ser <br><span class="text-gradient">HUMANO.</span></h2>
-            <p class="text-lg md:text-2xl text-white font-light mb-12 max-w-2xl mx-auto drop-shadow-2xl opacity-90">Onde a essência humana encontra a vibração da arte e a tecnologia do som.</p>
+            <h2 class="text-5xl md:text-8xl font-bold tracking-tighter mb-8 leading-none">A Arte de ser <br><span class="text-gradient">HUMANO.</span></h2>
+            <p class="text-base md:text-xl text-white/80 font-light mb-12 max-w-xl mx-auto tracking-wide">Onde a essência humana encontra a vibração da arte e a tecnologia do som.</p>
             
-            <!-- Redes Sociais Organizadas e Corrigidas -->
-            <div class="flex flex-wrap items-center justify-center gap-8 md:gap-12 mt-8">
-                <!-- 1. SPOTIFY -->
+            <!-- LINKS SOCIAIS - ORDEM SOLICITADA POR FABIO -->
+            <div class="flex flex-wrap items-center justify-center gap-8 md:gap-12 mt-4">
+                
+                <!-- 1. SPOTIFY (O PRIMEIRO) -->
                 <a href="https://open.spotify.com/intl-pt/artist/2BIEgnchM2L1arz2Liw1aY?si=8YzSiKpKROOtqblXn5SA0Q" target="_blank" class="social-icon" title="Spotify">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14.5c2.5-1 5.5-1 8 0"/><path d="M7 11.5c3-1.5 7-1.5 10 0"/><path d="M6 8.5c4-2 9-2 13 0"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/><path d="M8 14.5c2.5-1 5.5-1 8 0"/><path d="M7 11.5c3-1.5 7-1.5 10 0"/><path d="M6 8.5c4-2 9-2 13 0"/>
+                    </svg>
                 </a>
                 
-                <!-- 2. YOUTUBE -->
+                <!-- 2. YOUTUBE (O SEGUNDO) -->
                 <a href="https://www.youtube.com/channel/UCYYT-iBxv3t2bA2eMfjVWKw" target="_blank" class="social-icon" title="YouTube">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 2-2 68.4 68.4 0 0 1 15 0 2 2 0 0 1 2 2 24.12 24.12 0 0 1 0 10 2 2 0 0 1-2 2 68.4 68.4 0 0 1-15 0 2 2 0 0 1-2-2Z"/><path d="m10 15 5-3-5-3z"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 2-2 68.4 68.4 0 0 1 15 0 2 2 0 0 1 2 2 24.12 24.12 0 0 1 0 10 2 2 0 0 1-2 2 68.4 68.4 0 0 1-15 0 2 2 0 0 1-2-2Z"/><path d="m10 15 5-3-5-3z"/>
+                    </svg>
                 </a>
 
                 <!-- 3. INSTAGRAM -->
                 <a href="https://www.instagram.com/fabio.humano/" target="_blank" class="social-icon" title="Instagram">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
                 </a>
 
                 <!-- 4. TIKTOK -->
                 <a href="https://www.tiktok.com/@fabiohumano" target="_blank" class="social-icon" title="TikTok">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
                 </a>
 
                 <!-- 5. FACEBOOK -->
                 <a href="https://www.facebook.com/fabiobndtt" target="_blank" class="social-icon" title="Facebook">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
                 </a>
 
-                <!-- 6. WHATSAPP (Oficial Corrigido) -->
+                <!-- 6. WHATSAPP -->
                 <a href="https://wa.me/5532991064759" target="_blank" class="social-icon" title="WhatsApp">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" />
-                        <path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1Z" />
-                        <path d="M14 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1Z" />
-                        <path d="M9.5 15.5c.5 1 1.5 1.5 2.5 1.5s2-.5 2.5-1.5" />
+                    <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1-7.6-7.6 8.38 8.38 0 0 1 3.8.9L21 4.5z"/>
                     </svg>
                 </a>
             </div>
@@ -123,25 +126,25 @@
     </section>
 
     <section id="portfolio" class="py-32 bg-neutral-950 px-6 scroll-mt">
-        <div class="max-w-7xl mx-auto">
-            <h3 class="text-4xl md:text-6xl font-bold tracking-tighter mb-16">Produções <span class="text-neutral-600 italic">Recentes</span></h3>
-            <div id="videos-container" class="grid md:grid-cols-2 gap-8">
-                <div class="animate-pulse bg-neutral-900 h-64 rounded-2xl"></div>
-                <div class="animate-pulse bg-neutral-900 h-64 rounded-2xl"></div>
+        <div class="max-w-7xl mx-auto text-center md:text-left">
+            <h3 class="text-3xl md:text-5xl font-bold tracking-tighter mb-16">Trabalhos <span class="text-neutral-600 italic">Recentes</span></h3>
+            <div id="videos-container" class="grid md:grid-cols-2 gap-10">
+                <div class="animate-pulse bg-neutral-900 h-64 rounded-3xl"></div>
+                <div class="animate-pulse bg-neutral-900 h-64 rounded-3xl"></div>
             </div>
         </div>
     </section>
 
-    <section id="galeria" class="py-32 bg-black px-6 scroll-mt">
+    <section id="galeria" class="py-32 bg-black px-6 scroll-mt text-center md:text-left">
         <div class="max-w-7xl mx-auto">
-            <h3 class="text-4xl md:text-6xl font-bold tracking-tighter mb-16 italic">No <span class="text-neutral-600">Estúdio</span></h3>
-            <div id="galeria-container" class="grid grid-cols-2 md:grid-cols-4 gap-4"></div>
+            <h3 class="text-3xl md:text-5xl font-bold tracking-tighter mb-16 italic">No <span class="text-neutral-600">Estúdio</span></h3>
+            <div id="galeria-container" class="grid grid-cols-2 md:grid-cols-4 gap-6"></div>
         </div>
     </section>
 
-    <footer class="py-24 border-t border-white/5 bg-black text-center">
-        <a href="https://wa.me/5532991064759" target="_blank" class="text-4xl md:text-6xl font-bold hover:text-neutral-400 transition-colors uppercase">VAMOS CRIAR?</a>
-        <p class="mt-12 text-neutral-600 text-[10px] uppercase tracking-widest">© 2024 Fabio Benedetti. Todos os direitos reservados.</p>
+    <footer class="py-24 border-t border-white/5 bg-black text-center px-6">
+        <a href="https://wa.me/5532991064759" target="_blank" class="text-3xl md:text-6xl font-bold hover:text-neutral-400 transition-colors uppercase tracking-tighter">VAMOS CRIAR JUNTOS?</a>
+        <p class="mt-12 text-neutral-600 text-[9px] uppercase tracking-[0.3em]">© 2024 HUMANO Studio • Fabio Benedetti</p>
     </footer>
 
     <script type="module">
@@ -165,31 +168,27 @@
             const container = document.getElementById('videos-container');
             container.innerHTML = '';
             if (snapshot.empty) {
-                container.innerHTML = '<p class="text-neutral-500 col-span-2 text-center py-10">Acesse o Admin para adicionar vídeos.</p>';
+                container.innerHTML = '<p class="text-neutral-500 col-span-2 text-center py-10 font-light italic">Adicione vídeos pelo painel administrativo.</p>';
                 return;
             }
             snapshot.forEach((doc) => {
                 const video = doc.data();
                 let videoId = '';
                 const url = video.url;
-                if (url.includes('v=')) {
-                    videoId = url.split('v=')[1].split('&')[0];
-                } else if (url.includes('youtu.be/')) {
-                    videoId = url.split('youtu.be/')[1].split('?')[0];
-                } else if (url.includes('embed/')) {
-                    videoId = url.split('embed/')[1].split('?')[0];
-                } else {
-                    videoId = url.split('/').pop();
-                }
+                try {
+                    if (url.includes('v=')) videoId = url.split('v=')[1].split('&')[0];
+                    else if (url.includes('youtu.be/')) videoId = url.split('youtu.be/')[1].split('?')[0];
+                    else videoId = url.split('/').pop();
 
-                container.innerHTML += `
-                    <div class="card-art p-4 rounded-3xl overflow-hidden">
-                        <div class="aspect-video mb-4">
-                            <iframe src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>
+                    container.innerHTML += `
+                        <div class="card-art p-4 rounded-[2rem] overflow-hidden group">
+                            <div class="aspect-video mb-6 overflow-hidden rounded-2xl">
+                                <iframe src="https://www.youtube.com/embed/${videoId}" class="w-full h-full" frameborder="0" allowfullscreen></iframe>
+                            </div>
+                            <h4 class="text-sm font-semibold px-2 uppercase tracking-widest text-neutral-400 group-hover:text-white transition-colors">${video.titulo || 'Produção HUMANO'}</h4>
                         </div>
-                        <h4 class="text-lg font-bold px-2">${video.titulo || 'Produção HUMANO'}</h4>
-                    </div>
-                `;
+                    `;
+                } catch(e) {}
             });
         });
 
@@ -199,8 +198,8 @@
             snapshot.forEach((doc) => {
                 const foto = doc.data();
                 container.innerHTML += `
-                    <div class="aspect-square overflow-hidden rounded-xl border border-white/5 hover:border-white/20 transition-all">
-                        <img src="${foto.url}" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" loading="lazy">
+                    <div class="aspect-square overflow-hidden rounded-2xl border border-white/5 hover:border-white/20 transition-all cursor-crosshair">
+                        <img src="${foto.url}" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000" loading="lazy">
                     </div>
                 `;
             });
