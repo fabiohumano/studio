@@ -21,7 +21,6 @@
         }
     </style>
     <script>
-        // Shim essencial para evitar que bibliotecas que dependem de 'process' quebrem o site
         window.process = { env: { NODE_ENV: 'production' } };
     </script>
     <script type="importmap">
@@ -41,10 +40,14 @@
 <body class="bg-neutral-950 text-neutral-100">
     <div id="root">
         <div class="flex items-center justify-center h-screen">
-            <p class="text-neutral-500 animate-pulse uppercase tracking-widest text-xs">Carregando Studio...</p>
+            <div class="text-center">
+                <p class="text-neutral-500 animate-pulse uppercase tracking-widest text-xs">Iniciando Experiência...</p>
+                <noscript>
+                    <p class="text-red-500 mt-4">Você precisa ativar o JavaScript para ver este site.</p>
+                </noscript>
+            </div>
         </div>
     </div>
-    <!-- Esta linha abaixo é o que faz o site funcionar -->
     <script type="module" src="index.tsx"></script>
 <script type="module" src="/index.tsx"></script>
 </body>
