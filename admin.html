@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin | HUMANO Studio</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         body { background-color: #0a0a0a; color: white; font-family: 'Inter', sans-serif; }
         .input-dark { background: #1a1a1a; border: 1px solid #333; padding: 12px; border-radius: 8px; width: 100%; color: white; outline: none; }
@@ -14,8 +15,9 @@
         .btn-primary:hover { background: #ccc; transform: translateY(-2px); }
         .btn-primary:disabled { background: #444; color: #888; cursor: not-allowed; }
         .hidden { display: none; }
-        .tab-btn { border-bottom: 2px solid transparent; color: #666; transition: all 0.3s; padding: 10px 0; }
+        .tab-btn { border-bottom: 2px solid transparent; color: #666; transition: all 0.3s; padding: 10px 0; font-size: 10px; letter-spacing: 0.1em; font-weight: bold; }
         .tab-btn.active { border-color: white; color: white; }
+        .text-gradient { background: linear-gradient(to right, #fff, #888); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     </style>
 </head>
 <body class="p-6 md:p-12">
@@ -25,65 +27,64 @@
         <form id="login-form" class="space-y-4">
             <input type="email" id="login-email" placeholder="E-mail" class="input-dark" required>
             <input type="password" id="login-pass" placeholder="Senha" class="input-dark" required>
-            <button type="submit" class="w-full btn-primary">ENTRAR</button>
+            <button type="submit" class="w-full btn-primary uppercase tracking-widest">ENTRAR NO CÉREBRO</button>
         </form>
     </div>
 
     <div id="admin-dashboard" class="max-w-6xl mx-auto hidden">
         <div class="flex justify-between items-center mb-12 border-b border-white/10 pb-6">
             <h1 class="text-2xl font-bold tracking-tighter">PAINEL <span class="text-neutral-500">HUMANO</span></h1>
-            <button id="logout-btn" class="bg-red-900/20 text-red-500 px-4 py-2 rounded-lg text-xs font-bold hover:bg-red-900/40">SAIR</button>
+            <div class="flex items-center gap-4">
+                <a href="index.html" class="text-[10px] uppercase text-neutral-500 hover:text-white transition-colors">Ver Site</a>
+                <button id="logout-btn" class="bg-red-900/20 text-red-500 px-4 py-2 rounded-lg text-[10px] font-bold hover:bg-red-900/40 uppercase tracking-widest">Sair</button>
+            </div>
         </div>
 
-        <!-- NAVEGAÇÃO DE ABAS -->
-        <div class="flex space-x-8 mb-12 overflow-x-auto whitespace-nowrap">
-            <button onclick="switchTab('conteudo')" id="tab-conteudo" class="tab-btn active uppercase text-[10px] tracking-widest font-bold">Conteúdo Principal</button>
-            <button onclick="switchTab('bio')" id="tab-bio" class="tab-btn uppercase text-[10px] tracking-widest font-bold">Biografia & Bio</button>
+        <div class="flex space-x-8 mb-12 border-b border-white/5 overflow-x-auto">
+            <button onclick="switchTab('conteudo')" id="tab-conteudo" class="tab-btn active uppercase">Mídias</button>
+            <button onclick="switchTab('bio')" id="tab-bio" class="tab-btn uppercase">Biografia & Textos</button>
         </div>
 
-        <!-- ABA CONTEÚDO PRINCIPAL -->
+        <!-- ABA CONTEÚDO -->
         <div id="section-conteudo" class="grid md:grid-cols-2 gap-12">
             <section class="bg-neutral-900 p-8 rounded-3xl border border-white/5">
-                <h2 class="text-xl font-bold mb-6 italic">🎬 Novo Vídeo</h2>
+                <h2 class="text-xl font-bold mb-6 italic text-gradient">🎬 Novo Vídeo</h2>
                 <form id="video-form" class="space-y-4 mb-8">
-                    <input type="text" id="video-title" placeholder="Título do Vídeo" class="input-dark" required>
-                    <input type="url" id="video-url" placeholder="URL do YouTube" class="input-dark" required>
-                    <button type="submit" id="video-btn" class="w-full btn-primary">ADICIONAR</button>
+                    <input type="text" id="video-title" placeholder="Título" class="input-dark" required>
+                    <input type="url" id="video-url" placeholder="URL YouTube" class="input-dark" required>
+                    <button type="submit" id="video-btn" class="w-full btn-primary uppercase text-xs">Adicionar</button>
                 </form>
                 <div id="admin-videos-list" class="space-y-2 max-h-[400px] overflow-y-auto"></div>
             </section>
 
             <section class="bg-neutral-900 p-8 rounded-3xl border border-white/5">
-                <h2 class="text-xl font-bold mb-6 italic">📸 Nova Foto</h2>
+                <h2 class="text-xl font-bold mb-6 italic text-gradient">📸 Foto Estúdio</h2>
                 <div class="space-y-4 mb-8">
-                    <input type="file" id="photo-file" accept="image/*" class="text-sm file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:bg-white file:text-black">
-                    <button id="upload-photo-btn" class="w-full btn-primary">ENVIAR FOTO</button>
-                    <div id="upload-progress" class="hidden w-full bg-neutral-800 rounded-full h-1 mt-2">
-                        <div id="progress-bar" class="bg-white h-full transition-all w-0"></div>
-                    </div>
+                    <input type="file" id="photo-file" accept="image/*" class="text-xs">
+                    <button id="upload-photo-btn" class="w-full btn-primary uppercase text-xs">Fazer Upload</button>
                 </div>
                 <div id="admin-photos-list" class="grid grid-cols-3 gap-2 max-h-[400px] overflow-y-auto"></div>
             </section>
         </div>
 
-        <!-- ABA BIO & PORTFÓLIO -->
+        <!-- ABA BIO -->
         <div id="section-bio" class="hidden">
-            <div class="bg-neutral-900 p-8 rounded-3xl border border-white/5 max-w-3xl mx-auto">
-                <h2 class="text-2xl font-bold mb-8 italic text-gradient">Gerenciar Biografia</h2>
-                <form id="bio-form" class="space-y-6">
+            <div class="bg-neutral-900 p-8 rounded-3xl border border-white/5 max-w-4xl mx-auto">
+                <h2 class="text-2xl font-bold mb-8 italic text-gradient">Sua História no Site</h2>
+                <form id="bio-form" class="space-y-8">
                     <div>
-                        <label class="block text-xs uppercase tracking-widest text-neutral-500 mb-2">Texto da Biografia</label>
-                        <textarea id="admin-bio-text" rows="8" class="input-dark" placeholder="Escreva sua história aqui..."></textarea>
+                        <label class="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 mb-3">Sua Biografia</label>
+                        <textarea id="admin-bio-text" rows="12" class="input-dark text-sm" placeholder="Escreva sua trajetória aqui..."></textarea>
                     </div>
                     <div>
-                        <label class="block text-xs uppercase tracking-widest text-neutral-500 mb-2">Introdução do Portfólio</label>
-                        <textarea id="admin-portfolio-text" rows="4" class="input-dark" placeholder="Fale sobre seu estilo de produção..."></textarea>
+                        <label class="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 mb-3">Introdução do Portfólio</label>
+                        <textarea id="admin-portfolio-text" rows="4" class="input-dark text-sm" placeholder="Texto curto sobre seus vídeos..."></textarea>
                     </div>
                     <div>
-                        <label class="block text-xs uppercase tracking-widest text-neutral-500 mb-2">URL da Foto de Perfil (Opcional)</label>
-                        <input type="url" id="admin-bio-photo" class="input-dark" placeholder="Link de uma imagem sua">
+                        <label class="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 mb-3">URL da sua Foto (Opcional)</label>
+                        <input type="url" id="admin-bio-photo" class="input-dark text-sm" placeholder="https://exemplo.com/suafoto.jpg">
                     </div>
-                    <button type="submit" id="bio-save-btn" class="w-full btn-primary">SALVAR ALTERAÇÕES DA BIO</button>
+                    <button type="submit" id="bio-save-btn" class="w-full btn-primary uppercase tracking-widest py-4">SALVAR NO SITE AGORA</button>
                 </form>
             </div>
         </div>
@@ -110,7 +111,6 @@
         const db = getFirestore(app);
         const storage = getStorage(app);
 
-        // ABAS
         window.switchTab = (tab) => {
             document.getElementById('section-conteudo').classList.toggle('hidden', tab !== 'conteudo');
             document.getElementById('section-bio').classList.toggle('hidden', tab !== 'bio');
@@ -118,12 +118,10 @@
             document.getElementById('tab-bio').classList.toggle('active', tab === 'bio');
         };
 
-        // LOGIN
         document.getElementById('login-form').onsubmit = async (e) => {
             e.preventDefault();
-            try {
-                await signInWithEmailAndPassword(auth, document.getElementById('login-email').value, document.getElementById('login-pass').value);
-            } catch (err) { alert('Erro de Login!'); }
+            try { await signInWithEmailAndPassword(auth, document.getElementById('login-email').value, document.getElementById('login-pass').value); } 
+            catch (err) { alert('Erro de Login.'); }
         };
 
         document.getElementById('logout-btn').onclick = () => signOut(auth);
@@ -154,7 +152,7 @@
             e.preventDefault();
             const btn = document.getElementById('bio-save-btn');
             btn.disabled = true;
-            btn.innerText = 'SALVANDO...';
+            btn.innerText = 'ENVIANDO...';
             try {
                 await setDoc(doc(db, "site_content", "bio_page"), {
                     bioText: document.getElementById('admin-bio-text').value,
@@ -162,12 +160,9 @@
                     photoUrl: document.getElementById('admin-bio-photo').value,
                     updatedAt: serverTimestamp()
                 }, { merge: true });
-                alert('Bio atualizada com sucesso!');
-            } catch(e) { alert('Erro ao salvar Bio.'); }
-            finally {
-                btn.disabled = false;
-                btn.innerText = 'SALVAR ALTERAÇÕES DA BIO';
-            }
+                alert('Atualizado com sucesso!');
+            } catch(e) { alert('Erro ao salvar.'); }
+            finally { btn.disabled = false; btn.innerText = 'SALVAR NO SITE AGORA'; }
         };
 
         function loadContent() {
@@ -175,10 +170,7 @@
                 const list = document.getElementById('admin-videos-list');
                 list.innerHTML = '';
                 snap.forEach(d => {
-                    list.innerHTML += `<div class="flex justify-between items-center p-3 bg-black/40 rounded border border-white/5 text-[10px]">
-                        <span class="truncate pr-4">${d.data().titulo}</span>
-                        <button onclick="deleteVideo('${d.id}')" class="text-red-500 font-bold hover:text-red-400">EXCLUIR</button>
-                    </div>`;
+                    list.innerHTML += `<div class="p-2 border border-white/5 flex justify-between bg-black/20 text-[10px]"><span class="truncate">${d.data().titulo}</span><button onclick="deleteVideo('${d.id}')" class="text-red-500 ml-4">APAGAR</button></div>`;
                 });
             });
 
@@ -186,59 +178,30 @@
                 const list = document.getElementById('admin-photos-list');
                 list.innerHTML = '';
                 snap.forEach(d => {
-                    list.innerHTML += `<div class="relative group aspect-square">
-                        <img src="${d.data().url}" class="w-full h-full object-cover rounded">
-                        <button onclick="deletePhoto('${d.id}', '${d.data().path}')" class="absolute inset-0 bg-red-600/80 opacity-0 group-hover:opacity-100 flex items-center justify-center text-[8px] font-bold">APAGAR</button>
-                    </div>`;
+                    list.innerHTML += `<div class="relative"><img src="${d.data().url}" class="aspect-square object-cover rounded"><button onclick="deletePhoto('${d.id}', '${d.data().path}')" class="absolute top-0 right-0 bg-red-600 p-1 text-[8px]">X</button></div>`;
                 });
             });
         }
 
-        window.deleteVideo = async (id) => { if(confirm('Excluir vídeo?')) await deleteDoc(doc(db, "videos", id)); };
-        window.deletePhoto = async (id, path) => {
-            if(confirm('Excluir foto?')) {
-                await deleteDoc(doc(db, "fotos", id));
-                try { await deleteObject(ref(storage, path)); } catch(e) {}
-            }
-        };
+        window.deleteVideo = async (id) => { if(confirm('Excluir?')) await deleteDoc(doc(db, "videos", id)); };
+        window.deletePhoto = async (id, path) => { if(confirm('Excluir foto?')) { await deleteDoc(doc(db, "fotos", id)); try{ await deleteObject(ref(storage, path)); }catch(e){} } };
 
         document.getElementById('video-form').onsubmit = async (e) => {
             e.preventDefault();
-            const btn = document.getElementById('video-btn');
-            btn.disabled = true;
-            try {
-                await addDoc(collection(db, "videos"), {
-                    titulo: document.getElementById('video-title').value,
-                    url: document.getElementById('video-url').value,
-                    timestamp: serverTimestamp()
-                });
-                e.target.reset();
-            } catch(err) { alert('Erro ao adicionar vídeo.'); }
-            finally { btn.disabled = false; }
+            await addDoc(collection(db, "videos"), { titulo: document.getElementById('video-title').value, url: document.getElementById('video-url').value, timestamp: serverTimestamp() });
+            e.target.reset();
         };
 
         document.getElementById('upload-photo-btn').onclick = async () => {
             const file = document.getElementById('photo-file').files[0];
-            if(!file) return alert('Selecione uma imagem');
-            const btn = document.getElementById('upload-photo-btn');
-            const bar = document.getElementById('progress-bar');
-            const progressContainer = document.getElementById('upload-progress');
+            if(!file) return;
             const path = `galeria/${Date.now()}_${file.name}`;
-            const storageRef = ref(storage, path);
-            const uploadTask = uploadBytesResumable(storageRef, file);
-            btn.disabled = true;
-            progressContainer.classList.remove('hidden');
-            uploadTask.on('state_changed', 
-                (snap) => { bar.style.width = (snap.bytesTransferred / snap.totalBytes) * 100 + '%'; }, 
-                (err) => { alert('Erro no Upload'); btn.disabled = false; }, 
-                async () => {
-                    const url = await getDownloadURL(uploadTask.snapshot.ref);
-                    await addDoc(collection(db, "fotos"), { url, path, timestamp: serverTimestamp() });
-                    btn.disabled = false;
-                    progressContainer.classList.add('hidden');
-                    bar.style.width = '0%';
-                }
-            );
+            const uploadTask = uploadBytesResumable(ref(storage, path), file);
+            uploadTask.on('state_changed', null, null, async () => {
+                const url = await getDownloadURL(uploadTask.snapshot.ref);
+                await addDoc(collection(db, "fotos"), { url, path, timestamp: serverTimestamp() });
+                alert('Foto enviada!');
+            });
         };
     </script>
 </body>

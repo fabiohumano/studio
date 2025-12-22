@@ -14,6 +14,7 @@
         .section-title { letter-spacing: -0.05em; }
         .video-card { background: #111; border: 1px solid #222; transition: all 0.4s; }
         .video-card:hover { border-color: #444; transform: translateY(-3px); }
+        .hidden { display: none; }
     </style>
 </head>
 <body class="selection:bg-white selection:text-black">
@@ -29,14 +30,145 @@
         <section class="grid md:grid-cols-2 gap-20 items-start mb-32">
             <div>
                 <h2 class="text-5xl md:text-7xl font-bold section-title mb-10">O Humano por trás do <span class="italic text-neutral-600">Som.</span></h2>
-                <div id="bio-content" class="bio-text text-lg">
-                    <div class="animate-pulse space-y-4">
+                
+                <!-- CONTAINER DE TEXTO DA BIO -->
+                <div id="bio-content" class="bio-text text-lg min-h-[100px]">
+                    <!-- SKELETON LOADING (VAI SUMIR QUANDO O DADO CHEGAR) -->
+                    <div id="bio-skeleton" class="animate-pulse space-y-4">
                         <div class="h-4 bg-neutral-900 rounded w-full"></div>
                         <div class="h-4 bg-neutral-900 rounded w-5/6"></div>
                         <div class="h-4 bg-neutral-900 rounded w-4/6"></div>
                     </div>
+                    <div id="bio-real-text"></div>
                 </div>
             </div>
+            
             <div class="sticky top-20">
                 <div class="aspect-[4/5] bg-neutral-900 rounded-3xl overflow-hidden grayscale hover:grayscale-0 transition-all duration-1000 border border-white/10">
-                    <img src="https://images.unsplash.
+                    <!-- FOTO DE PERFIL -->
+                    <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=2070&auto=format&fit=crop" id="bio-photo" class="w-full h-full object-cover opacity-0 transition-opacity duration-1000">
+                </div>
+                <p class="text-[9px] uppercase tracking-widest text-neutral-600 mt-4 text-center">Fabio Benedetti • Produtor & Compositor</p>
+            </div>
+        </section>
+
+        <!-- SEÇÃO PORTFOLIO -->
+        <section class="border-t border-white/5 pt-32">
+            <h2 class="text-4xl md:text-6xl font-bold section-title mb-6 italic">Portfólio <span class="text-neutral-700">Destaque</span></h2>
+            
+            <!-- INTRODUÇÃO DO PORTFÓLIO -->
+            <div id="portfolio-intro" class="bio-text text-xl mb-20 max-w-3xl min-h-[50px]">
+                <span class="text-neutral-800 italic">Sincronizando com o Cloud...</span>
+            </div>
+            
+            <div id="portfolio-videos" class="grid md:grid-cols-2 gap-8">
+                <!-- Vídeos serão injetados aqui via Firebase -->
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-20 text-center border-t border-white/5 mt-32">
+        <p class="text-[10px] uppercase tracking-widest text-neutral-600">© 2024 Fabio Benedetti • HUMANO Studio</p>
+    </footer>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, doc, onSnapshot, collection, query, orderBy } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+          apiKey: "AIzaSyDhSp-QPDZI2AbNrYdZO447NKTF2PMYjlQ",
+          authDomain: "humano-studio.firebaseapp.com",
+          projectId: "humano-studio",
+          storageBucket: "humano-studio.firebasestorage.app",
+          messagingSenderId: "938534325822",
+          appId: "1:938534325822:web:abf5443336ce3224190b6f",
+          measurementId: "G-CT1NF7WLBJ"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // --- CARREGAMENTO DOS TEXTOS (BIO E INTRO PORTFÓLIO) ---
+        onSnapshot(doc(db, "site_content", "bio_page"), (docSnap) => {
+            const skeleton = document.getElementById('bio-skeleton');
+            const realText = document.getElementById('bio-real-text');
+            const introEl = document.getElementById('portfolio-intro');
+            const photoEl = document.getElementById('bio-photo');
+
+            console.log("Recebendo dados da Bio...");
+
+            if (docSnap.exists()) {
+                const data = docSnap.data();
+                console.log("Dados encontrados:", data);
+
+                // Bio Text
+                if (data.bioText) {
+                    realText.innerText = data.bioText;
+                    if(skeleton) skeleton.remove();
+                } else {
+                    realText.innerText = "Sua história aparecerá aqui. Configure no Admin.";
+                    if(skeleton) skeleton.remove();
+                }
+
+                // Intro Portfolio
+                if (data.portfolioText) {
+                    introEl.innerText = data.portfolioText;
+                } else {
+                    introEl.innerText = "Trabalhos e produções recentes.";
+                }
+
+                // Foto de Perfil
+                if (data.photoUrl) {
+                    photoEl.src = data.photoUrl;
+                    photoEl.classList.remove('opacity-0');
+                } else {
+                    photoEl.classList.remove('opacity-0'); // Mostra a foto padrão se não houver URL
+                }
+            } else {
+                console.warn("Documento 'bio_page' não existe no banco.");
+                realText.innerText = "Nenhum conteúdo configurado no Painel Admin ainda.";
+                if(skeleton) skeleton.remove();
+            }
+        }, (error) => {
+            console.error("Erro no Firebase Bio:", error);
+            const realText = document.getElementById('bio-real-text');
+            realText.innerText = "Erro ao carregar dados. Verifique a conexão.";
+            const skeleton = document.getElementById('bio-skeleton');
+            if(skeleton) skeleton.remove();
+        });
+
+        // --- CARREGAMENTO DOS VÍDEOS ---
+        onSnapshot(query(collection(db, "videos"), orderBy("timestamp", "desc")), (snapshot) => {
+            const container = document.getElementById('portfolio-videos');
+            container.innerHTML = '';
+            
+            if (snapshot.empty) {
+                container.innerHTML = '<p class="text-neutral-600 text-xs uppercase tracking-widest">Nenhum vídeo cadastrado.</p>';
+                return;
+            }
+
+            snapshot.forEach((doc) => {
+                const video = doc.data();
+                let videoId = '';
+                const url = video.url;
+                try {
+                    if (url.includes('v=')) videoId = url.split('v=')[1].split('&')[0];
+                    else if (url.includes('youtu.be/')) videoId = url.split('youtu.be/')[1].split('?')[0];
+                    else videoId = url.split('/').pop();
+
+                    container.innerHTML += `
+                        <div class="video-card p-4 rounded-3xl overflow-hidden group">
+                            <div class="aspect-video mb-4 overflow-hidden rounded-xl">
+                                <iframe src="https://www.youtube.com/embed/${videoId}" class="w-full h-full" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                            </div>
+                            <h4 class="text-xs font-bold uppercase tracking-widest text-neutral-500 group-hover:text-white transition-colors">${video.titulo || 'Produção HUMANO'}</h4>
+                        </div>
+                    `;
+                } catch(e) {
+                    console.error("Erro ao processar URL do vídeo:", url);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
