@@ -1,54 +1,51 @@
 
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" prefix="og: http://ogp.me/ns#">
 <head>
-    <!-- 1. METATAGS DE PRIORIDADE ABSOLUTA (O robô do WhatsApp lê os primeiros KB do arquivo) -->
+    <!-- 1. IDENTIFICAÇÃO E ENCODE (Sempre no topo) -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- Título e Descrição Base -->
-    <title>HUMANO Studio | Fabio Benedetti</title>
-    <meta name="description" content="Onde a essência humana encontra a vibração da arte e a tecnologia do som. Produções Musicais e Trilhas Sonoras por Fabio Benedetti.">
+    <!-- 2. PRIORIDADE ABSOLUTA PARA IMAGEM (O WhatsApp lê os primeiros 10-15 lines) -->
+    <!-- Plano A: Cartão de Visita Customizado -->
+    <meta itemprop="image" content="https://fabiohumano.github.io/studio/cartao.jpg?v=3.0">
+    <meta property="og:image" content="https://fabiohumano.github.io/studio/cartao.jpg?v=3.0">
+    <meta property="og:image:secure_url" content="https://fabiohumano.github.io/studio/cartao.jpg?v=3.0">
+    
+    <!-- Plano B: Imagem de Alta Qualidade do Estúdio (Fallback caso o cartão falhe) -->
+    <meta property="og:image" content="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200&auto=format&fit=crop">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
 
-    <!-- 2. OPEN GRAPH (FACEBOOK / WHATSAPP / LINKEDIN) - VERSÃO 2.0 -->
+    <!-- 3. TÍTULO E DESCRIÇÃO (Briefing Curto e Direto) -->
+    <title>HUMANO Studio | Fabio Benedetti</title>
+    <meta name="description" content="Essência humana, vibração da arte e tecnologia do som. Produções Musicais e Trilhas Sonoras por Fabio Benedetti.">
+
+    <!-- 4. OPEN GRAPH & TWITTER -->
     <meta property="fb:app_id" content="966242223397117">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://fabiohumano.github.io/studio/">
     <meta property="og:title" content="HUMANO Studio | Fabio Benedetti">
-    <meta property="og:description" content="Produções Musicais e Trilhas Sonoras. Clique para conhecer meu trabalho.">
+    <meta property="og:description" content="Clique para conhecer o estúdio e ouvir minhas produções musicais.">
     <meta property="og:site_name" content="HUMANO Studio">
     
-    <!-- Imagem de Capa com Cache Busting v=2.0 e Redundância -->
-    <meta property="og:image" content="https://fabiohumano.github.io/studio/cartao.jpg?v=2.0">
-    <meta property="og:image:secure_url" content="https://fabiohumano.github.io/studio/cartao.jpg?v=2.0">
-    <meta property="og:image:type" content="image/jpeg">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="HUMANO Studio - Fabio Benedetti">
-
-    <!-- 3. TWITTER CARDS -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="HUMANO Studio | Fabio Benedetti">
-    <meta name="twitter:description" content="Produções Musicais e Trilhas Sonoras.">
-    <meta name="twitter:image" content="https://fabiohumano.github.io/studio/cartao.jpg?v=2.0">
+    <meta name="twitter:image" content="https://fabiohumano.github.io/studio/cartao.jpg?v=3.0">
 
-    <!-- 4. SCHEMA.ORG (JSON-LD) - Redundância para Google e Android -->
+    <!-- 5. SCHEMA.ORG (JSON-LD) - Redundância Estrutural -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "MusicStudio",
       "name": "HUMANO Studio",
       "url": "https://fabiohumano.github.io/studio/",
-      "image": "https://fabiohumano.github.io/studio/cartao.jpg?v=2.0",
-      "description": "Produções Musicais e Trilhas Sonoras por Fabio Benedetti.",
-      "address": {
-        "@type": "PostalAddress",
-        "addressCountry": "BR"
-      }
+      "image": "https://fabiohumano.github.io/studio/cartao.jpg?v=3.0",
+      "description": "Produções Musicais e Trilhas Sonoras por Fabio Benedetti."
     }
     </script>
 
-    <!-- 5. ESTILOS E SCRIPTS -->
+    <!-- ESTILOS E SCRIPTS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
