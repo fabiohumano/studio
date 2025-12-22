@@ -41,14 +41,15 @@
         </div>
 
         <div class="flex space-x-8 mb-12 border-b border-white/5 overflow-x-auto">
-            <button onclick="switchTab('conteudo')" id="tab-conteudo" class="tab-btn active uppercase">Mídias</button>
-            <button onclick="switchTab('bio')" id="tab-bio" class="tab-btn uppercase">Biografia & Textos</button>
+            <button onclick="switchTab('conteudo')" id="tab-conteudo" class="tab-btn active uppercase">Mídias Rápidas</button>
+            <button onclick="switchTab('trabalhos')" id="tab-trabalhos" class="tab-btn uppercase">Portfólio Detalhado</button>
+            <button onclick="switchTab('bio')" id="tab-bio" class="tab-btn uppercase">Biografia</button>
         </div>
 
-        <!-- ABA CONTEÚDO -->
+        <!-- ABA CONTEÚDO (VÍDEOS E GALERIA) -->
         <div id="section-conteudo" class="grid md:grid-cols-2 gap-12">
             <section class="bg-neutral-900 p-8 rounded-3xl border border-white/5">
-                <h2 class="text-xl font-bold mb-6 italic text-gradient">🎬 Novo Vídeo</h2>
+                <h2 class="text-xl font-bold mb-6 italic text-gradient">🎬 Vídeos (Home/Bio)</h2>
                 <form id="video-form" class="space-y-4 mb-8">
                     <input type="text" id="video-title" placeholder="Título" class="input-dark" required>
                     <input type="url" id="video-url" placeholder="URL YouTube" class="input-dark" required>
@@ -58,7 +59,7 @@
             </section>
 
             <section class="bg-neutral-900 p-8 rounded-3xl border border-white/5">
-                <h2 class="text-xl font-bold mb-6 italic text-gradient">📸 Foto Estúdio</h2>
+                <h2 class="text-xl font-bold mb-6 italic text-gradient">📸 Galeria Estúdio</h2>
                 <div class="space-y-4 mb-8">
                     <input type="file" id="photo-file" accept="image/*" class="text-xs">
                     <button id="upload-photo-btn" class="w-full btn-primary uppercase text-xs">Fazer Upload</button>
@@ -67,22 +68,50 @@
             </section>
         </div>
 
+        <!-- ABA PORTFÓLIO DETALHADO (NOVA) -->
+        <div id="section-trabalhos" class="hidden">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="md:col-span-1">
+                    <section class="bg-neutral-900 p-8 rounded-3xl border border-white/5">
+                        <h2 class="text-xl font-bold mb-6 italic text-gradient">Novo Trabalho</h2>
+                        <form id="work-form" class="space-y-4">
+                            <input type="text" id="work-title" placeholder="Título do Projeto" class="input-dark" required>
+                            <input type="text" id="work-date" placeholder="Data (ex: Outubro 2024)" class="input-dark">
+                            <div>
+                                <label class="block text-[10px] text-neutral-500 mb-1 uppercase">Foto do Trabalho</label>
+                                <input type="file" id="work-file" accept="image/*" class="text-xs bg-black/30 p-2 rounded w-full">
+                            </div>
+                            <textarea id="work-desc" rows="6" placeholder="Descrição/História do trabalho..." class="input-dark text-sm" required></textarea>
+                            <button type="submit" id="work-submit-btn" class="w-full btn-primary uppercase tracking-widest py-4">PUBLICAR NO PORTFÓLIO</button>
+                        </form>
+                    </section>
+                </div>
+                <div class="md:col-span-2">
+                    <section class="bg-neutral-900 p-8 rounded-3xl border border-white/5">
+                        <h2 class="text-xl font-bold mb-6 italic text-gradient">Trabalhos Publicados</h2>
+                        <div id="admin-works-list" class="space-y-4 max-h-[600px] overflow-y-auto">
+                            <!-- Lista de trabalhos -->
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+
         <!-- ABA BIO -->
         <div id="section-bio" class="hidden">
             <div class="bg-neutral-900 p-8 rounded-3xl border border-white/5 max-w-4xl mx-auto">
-                <h2 class="text-2xl font-bold mb-8 italic text-gradient">Sua História no Site</h2>
+                <h2 class="text-2xl font-bold mb-8 italic text-gradient">Sua História</h2>
                 <form id="bio-form" class="space-y-8">
                     <div>
                         <label class="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 mb-3">Sua Foto de Perfil</label>
                         <div class="flex flex-col gap-4">
                             <div id="bio-photo-preview-container" class="hidden mb-2">
-                                <img id="bio-photo-preview" src="" class="w-32 h-40 object-cover rounded-xl border border-white/10 shadow-lg">
+                                <img id="bio-photo-preview" src="" class="w-32 h-40 object-cover rounded-xl border border-white/10">
                             </div>
                             <div class="flex flex-col md:flex-row gap-4 items-center">
                                 <input type="file" id="admin-bio-photo-file" accept="image/*" class="text-xs text-neutral-400 bg-black/20 p-2 rounded-lg w-full md:w-auto">
-                                <button type="button" id="upload-bio-photo-btn" class="w-full md:w-auto bg-neutral-800 hover:bg-neutral-700 text-white text-[10px] font-bold py-3 px-6 rounded-lg uppercase tracking-widest transition-all">Upload Foto</button>
+                                <button type="button" id="upload-bio-photo-btn" class="w-full md:w-auto bg-neutral-800 hover:bg-neutral-700 text-white text-[10px] font-bold py-3 px-6 rounded-lg uppercase tracking-widest">Upload Foto</button>
                             </div>
-                            <!-- Campo escondido para guardar a URL final -->
                             <input type="hidden" id="admin-bio-photo-url">
                         </div>
                     </div>
@@ -94,7 +123,7 @@
                         <label class="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 mb-3">Introdução do Portfólio</label>
                         <textarea id="admin-portfolio-text" rows="4" class="input-dark text-sm" placeholder="Texto curto sobre seus vídeos..."></textarea>
                     </div>
-                    <button type="submit" id="bio-save-btn" class="w-full btn-primary uppercase tracking-widest py-4 mt-8">SALVAR TUDO NO SITE</button>
+                    <button type="submit" id="bio-save-btn" class="w-full btn-primary uppercase tracking-widest py-4 mt-8">SALVAR TEXTOS</button>
                 </form>
             </div>
         </div>
@@ -123,8 +152,11 @@
 
         window.switchTab = (tab) => {
             document.getElementById('section-conteudo').classList.toggle('hidden', tab !== 'conteudo');
+            document.getElementById('section-trabalhos').classList.toggle('hidden', tab !== 'trabalhos');
             document.getElementById('section-bio').classList.toggle('hidden', tab !== 'bio');
+            
             document.getElementById('tab-conteudo').classList.toggle('active', tab === 'conteudo');
+            document.getElementById('tab-trabalhos').classList.toggle('active', tab === 'trabalhos');
             document.getElementById('tab-bio').classList.toggle('active', tab === 'bio');
         };
 
@@ -142,12 +174,75 @@
                 document.getElementById('admin-dashboard').classList.remove('hidden');
                 loadContent();
                 loadBioData();
+                loadWorks();
             } else {
                 document.getElementById('login-screen').classList.remove('hidden');
                 document.getElementById('admin-dashboard').classList.add('hidden');
             }
         });
 
+        // --- ABA PORTFÓLIO (TRABALHOS) ---
+        document.getElementById('work-form').onsubmit = async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('work-submit-btn');
+            const file = document.getElementById('work-file').files[0];
+            
+            btn.disabled = true;
+            btn.innerText = 'ENVIANDO...';
+
+            let fotoUrl = "";
+            let fotoPath = "";
+
+            if (file) {
+                fotoPath = `trabalhos/${Date.now()}_${file.name}`;
+                const storageRef = ref(storage, fotoPath);
+                const uploadTask = await uploadBytesResumable(storageRef, file);
+                fotoUrl = await getDownloadURL(uploadTask.ref);
+            }
+
+            try {
+                await addDoc(collection(db, "trabalhos"), {
+                    titulo: document.getElementById('work-title').value,
+                    data: document.getElementById('work-date').value,
+                    descricao: document.getElementById('work-desc').value,
+                    fotoUrl,
+                    fotoPath,
+                    timestamp: serverTimestamp()
+                });
+                alert('Trabalho publicado!');
+                e.target.reset();
+            } catch(err) { alert('Erro ao salvar trabalho.'); }
+            finally { btn.disabled = false; btn.innerText = 'PUBLICAR NO PORTFÓLIO'; }
+        };
+
+        function loadWorks() {
+            onSnapshot(query(collection(db, "trabalhos"), orderBy("timestamp", "desc")), (snap) => {
+                const list = document.getElementById('admin-works-list');
+                list.innerHTML = '';
+                snap.forEach(d => {
+                    const data = d.data();
+                    list.innerHTML += `
+                        <div class="flex items-center gap-4 bg-black/40 p-4 rounded-xl border border-white/5">
+                            <img src="${data.fotoUrl || 'https://via.placeholder.com/100'}" class="w-16 h-16 object-cover rounded">
+                            <div class="flex-1">
+                                <h4 class="font-bold text-sm">${data.titulo}</h4>
+                                <p class="text-[10px] text-neutral-500">${data.data || ''}</p>
+                            </div>
+                            <button onclick="deleteWork('${d.id}', '${data.fotoPath}')" class="text-red-500 text-[10px] font-bold">APAGAR</button>
+                        </div>
+                    `;
+                });
+            });
+        }
+
+        window.deleteWork = async (id, path) => {
+            if(confirm('Deseja excluir este trabalho do portfólio?')) {
+                await deleteDoc(doc(db, "trabalhos", id));
+                if(path) { try { await deleteObject(ref(storage, path)); } catch(e) {} }
+            }
+        };
+
+        // --- ABA BIO E CONTEÚDO ---
         async function loadBioData() {
             const docSnap = await getDoc(doc(db, "site_content", "bio_page"));
             if (docSnap.exists()) {
@@ -162,46 +257,22 @@
             }
         }
 
-        // --- SISTEMA DE UPLOAD DA FOTO DE PERFIL ---
         document.getElementById('upload-bio-photo-btn').onclick = async () => {
             const file = document.getElementById('admin-bio-photo-file').files[0];
-            if(!file) { alert('Selecione uma foto primeiro.'); return; }
-            
-            const btn = document.getElementById('upload-bio-photo-btn');
-            btn.disabled = true;
-            btn.innerText = 'ENVIANDO...';
-
+            if(!file) return;
             const path = `perfil/${Date.now()}_${file.name}`;
-            const storageRef = ref(storage, path);
-            const uploadTask = uploadBytesResumable(storageRef, file);
-
-            uploadTask.on('state_changed', 
-                (snapshot) => {
-                    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                    btn.innerText = `LENDO ${Math.round(progress)}%`;
-                }, 
-                (error) => {
-                    alert('Erro no upload.');
-                    btn.disabled = false;
-                    btn.innerText = 'UPLOAD FOTO';
-                }, 
-                async () => {
-                    const url = await getDownloadURL(uploadTask.snapshot.ref);
-                    document.getElementById('admin-bio-photo-url').value = url;
-                    document.getElementById('bio-photo-preview').src = url;
-                    document.getElementById('bio-photo-preview-container').classList.remove('hidden');
-                    alert('Foto de perfil carregada com sucesso! Não esqueça de Salvar a Bio abaixo.');
-                    btn.disabled = false;
-                    btn.innerText = 'FOTO PRONTA';
-                }
-            );
+            const uploadTask = uploadBytesResumable(ref(storage, path), file);
+            uploadTask.on('state_changed', null, null, async () => {
+                const url = await getDownloadURL(uploadTask.snapshot.ref);
+                document.getElementById('admin-bio-photo-url').value = url;
+                document.getElementById('bio-photo-preview').src = url;
+                document.getElementById('bio-photo-preview-container').classList.remove('hidden');
+                alert('Foto pronta!');
+            });
         };
 
         document.getElementById('bio-form').onsubmit = async (e) => {
             e.preventDefault();
-            const btn = document.getElementById('bio-save-btn');
-            btn.disabled = true;
-            btn.innerText = 'ENVIANDO...';
             try {
                 await setDoc(doc(db, "site_content", "bio_page"), {
                     bioText: document.getElementById('admin-bio-text').value,
@@ -209,9 +280,8 @@
                     photoUrl: document.getElementById('admin-bio-photo-url').value,
                     updatedAt: serverTimestamp()
                 }, { merge: true });
-                alert('Tudo atualizado com sucesso!');
+                alert('Bio atualizada!');
             } catch(e) { alert('Erro ao salvar.'); }
-            finally { btn.disabled = false; btn.innerText = 'SALVAR TUDO NO SITE'; }
         };
 
         function loadContent() {

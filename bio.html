@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bio & Portfólio | Fabio Benedetti</title>
+    <title>Bio | Fabio Benedetti</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
@@ -15,17 +15,23 @@
         .video-card { background: #111; border: 1px solid #222; transition: all 0.4s; }
         .video-card:hover { border-color: #444; transform: translateY(-3px); }
         .hidden { display: none; }
+        nav a { transition: color 0.3s; }
+        nav a:hover { color: white; }
     </style>
 </head>
 <body class="selection:bg-white selection:text-black">
     <div class="bg-grain"></div>
 
-    <nav class="p-8 flex justify-between items-center border-b border-white/5">
-        <a href="index.html" class="text-sm font-bold tracking-tighter hover:text-neutral-500 transition-colors">← VOLTAR AO STUDIO</a>
-        <h1 class="text-xs uppercase tracking-[0.3em] font-light text-neutral-500">Fabio Benedetti • Biografia</h1>
+    <nav class="fixed top-0 left-0 w-full z-50 p-8 flex justify-between items-center bg-black/50 backdrop-blur-lg border-b border-white/5">
+        <a href="index.html" class="text-xl font-bold tracking-tighter text-white">HUMANO<span class="text-neutral-600 italic font-light">Studio</span></a>
+        <div class="flex gap-8 uppercase tracking-widest text-[10px]">
+            <a href="index.html" class="text-neutral-500">Início</a>
+            <a href="bio.html" class="text-white">Bio</a>
+            <a href="portfolio.html" class="text-neutral-500">Portfólio</a>
+        </div>
     </nav>
 
-    <main class="max-w-6xl mx-auto px-6 py-20">
+    <main class="max-w-6xl mx-auto px-6 py-40">
         <!-- SEÇÃO BIO -->
         <section class="grid md:grid-cols-2 gap-20 items-start mb-32">
             <div>
@@ -33,7 +39,7 @@
                 
                 <!-- CONTAINER DE TEXTO DA BIO -->
                 <div id="bio-content" class="bio-text text-lg min-h-[100px]">
-                    <!-- SKELETON LOADING (VAI SUMIR QUANDO O DADO CHEGAR) -->
+                    <!-- SKELETON LOADING -->
                     <div id="bio-skeleton" class="animate-pulse space-y-4">
                         <div class="h-4 bg-neutral-900 rounded w-full"></div>
                         <div class="h-4 bg-neutral-900 rounded w-5/6"></div>
@@ -43,8 +49,8 @@
                 </div>
             </div>
             
-            <div class="sticky top-20">
-                <div class="aspect-[4/5] bg-neutral-900 rounded-3xl overflow-hidden grayscale hover:grayscale-0 transition-all duration-1000 border border-white/10">
+            <div class="sticky top-40">
+                <div class="aspect-[4/5] bg-neutral-900 rounded-3xl overflow-hidden grayscale hover:grayscale-0 transition-all duration-1000 border border-white/10 shadow-2xl">
                     <!-- FOTO DE PERFIL -->
                     <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=2070&auto=format&fit=crop" id="bio-photo" class="w-full h-full object-cover opacity-0 transition-opacity duration-1000">
                 </div>
@@ -52,15 +58,9 @@
             </div>
         </section>
 
-        <!-- SEÇÃO PORTFOLIO -->
+        <!-- VÍDEOS EM DESTAQUE (OPCIONAL) -->
         <section class="border-t border-white/5 pt-32">
-            <h2 class="text-4xl md:text-6xl font-bold section-title mb-6 italic">Portfólio <span class="text-neutral-700">Destaque</span></h2>
-            
-            <!-- INTRODUÇÃO DO PORTFÓLIO -->
-            <div id="portfolio-intro" class="bio-text text-xl mb-20 max-w-3xl min-h-[50px]">
-                <span class="text-neutral-800 italic">Sincronizando com o Cloud...</span>
-            </div>
-            
+            <h2 class="text-4xl md:text-6xl font-bold section-title mb-6 italic">Produções <span class="text-neutral-700">Recentes</span></h2>
             <div id="portfolio-videos" class="grid md:grid-cols-2 gap-8">
                 <!-- Vídeos serão injetados aqui via Firebase -->
             </div>
@@ -88,65 +88,21 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        // --- CARREGAMENTO DOS TEXTOS (BIO E INTRO PORTFÓLIO) ---
         onSnapshot(doc(db, "site_content", "bio_page"), (docSnap) => {
             const skeleton = document.getElementById('bio-skeleton');
             const realText = document.getElementById('bio-real-text');
-            const introEl = document.getElementById('portfolio-intro');
             const photoEl = document.getElementById('bio-photo');
-
-            console.log("Recebendo dados da Bio...");
-
             if (docSnap.exists()) {
                 const data = docSnap.data();
-                console.log("Dados encontrados:", data);
-
-                // Bio Text
-                if (data.bioText) {
-                    realText.innerText = data.bioText;
-                    if(skeleton) skeleton.remove();
-                } else {
-                    realText.innerText = "Sua história aparecerá aqui. Configure no Admin.";
-                    if(skeleton) skeleton.remove();
-                }
-
-                // Intro Portfolio
-                if (data.portfolioText) {
-                    introEl.innerText = data.portfolioText;
-                } else {
-                    introEl.innerText = "Trabalhos e produções recentes.";
-                }
-
-                // Foto de Perfil
-                if (data.photoUrl) {
-                    photoEl.src = data.photoUrl;
-                    photoEl.classList.remove('opacity-0');
-                } else {
-                    photoEl.classList.remove('opacity-0'); // Mostra a foto padrão se não houver URL
-                }
-            } else {
-                console.warn("Documento 'bio_page' não existe no banco.");
-                realText.innerText = "Nenhum conteúdo configurado no Painel Admin ainda.";
-                if(skeleton) skeleton.remove();
+                if (data.bioText) { realText.innerText = data.bioText; if(skeleton) skeleton.remove(); }
+                if (data.photoUrl) { photoEl.src = data.photoUrl; photoEl.classList.remove('opacity-0'); }
+                else { photoEl.classList.remove('opacity-0'); }
             }
-        }, (error) => {
-            console.error("Erro no Firebase Bio:", error);
-            const realText = document.getElementById('bio-real-text');
-            realText.innerText = "Erro ao carregar dados. Verifique a conexão.";
-            const skeleton = document.getElementById('bio-skeleton');
-            if(skeleton) skeleton.remove();
         });
 
-        // --- CARREGAMENTO DOS VÍDEOS ---
         onSnapshot(query(collection(db, "videos"), orderBy("timestamp", "desc")), (snapshot) => {
             const container = document.getElementById('portfolio-videos');
             container.innerHTML = '';
-            
-            if (snapshot.empty) {
-                container.innerHTML = '<p class="text-neutral-600 text-xs uppercase tracking-widest">Nenhum vídeo cadastrado.</p>';
-                return;
-            }
-
             snapshot.forEach((doc) => {
                 const video = doc.data();
                 let videoId = '';
@@ -155,7 +111,6 @@
                     if (url.includes('v=')) videoId = url.split('v=')[1].split('&')[0];
                     else if (url.includes('youtu.be/')) videoId = url.split('youtu.be/')[1].split('?')[0];
                     else videoId = url.split('/').pop();
-
                     container.innerHTML += `
                         <div class="video-card p-4 rounded-3xl overflow-hidden group">
                             <div class="aspect-video mb-4 overflow-hidden rounded-xl">
@@ -164,9 +119,7 @@
                             <h4 class="text-xs font-bold uppercase tracking-widest text-neutral-500 group-hover:text-white transition-colors">${video.titulo || 'Produção HUMANO'}</h4>
                         </div>
                     `;
-                } catch(e) {
-                    console.error("Erro ao processar URL do vídeo:", url);
-                }
+                } catch(e) {}
             });
         });
     </script>
