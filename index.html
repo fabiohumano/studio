@@ -2,12 +2,18 @@
 <!DOCTYPE html>
 <html lang="pt-BR" prefix="og: http://ogp.me/ns#">
 <head>
-    <!-- 1. IDENTIFICAÇÃO E ENCODE (Sempre no topo) -->
+    <!-- 1. IDENTIFICAÇÃO E ENCODE -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="canonical" href="https://fabiohumano.github.io/studio/">
 
-    <!-- 2. PRIORIDADE CRÍTICA PARA ROBÔS (WhatsApp/Facebook) -->
+    <!-- 2. DICAS DE PERFORMANCE (Otimiza a conexão) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://images.unsplash.com">
+
+    <!-- 3. PRIORIDADE CRÍTICA PARA REDES SOCIAIS -->
     <meta itemprop="image" content="https://fabiohumano.github.io/studio/cartao.jpg?v=4.0">
     <meta property="og:image" content="https://fabiohumano.github.io/studio/cartao.jpg?v=4.0">
     <meta property="og:image:secure_url" content="https://fabiohumano.github.io/studio/cartao.jpg?v=4.0">
@@ -15,11 +21,9 @@
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     
-    <!-- 3. IDENTIDADE DA PÁGINA -->
     <title>HUMANO Studio | Fabio Benedetti</title>
     <meta name="description" content="Essência humana, vibração da arte e tecnologia do som. Produções Musicais e Trilhas Sonoras por Fabio Benedetti.">
 
-    <!-- 4. PROTOCOLO OPEN GRAPH COMPLETO -->
     <meta property="fb:app_id" content="966242223397117">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://fabiohumano.github.io/studio/">
@@ -28,116 +32,147 @@
     <meta property="og:site_name" content="HUMANO Studio">
     
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="HUMANO Studio | Fabio Benedetti">
-    <meta name="twitter:description" content="Produções Musicais e Trilhas Sonoras.">
     <meta name="twitter:image" content="https://fabiohumano.github.io/studio/cartao.jpg?v=4.0">
 
-    <!-- 5. SCHEMA.ORG (SEO ESTRUTURADO) -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "MusicStudio",
-      "name": "HUMANO Studio",
-      "url": "https://fabiohumano.github.io/studio/",
-      "image": "https://fabiohumano.github.io/studio/cartao.jpg?v=4.0",
-      "description": "Produções Musicais e Trilhas Sonoras por Fabio Benedetti."
-    }
-    </script>
-
-    <!-- ESTILOS E RECURSOS EXTERNOS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 4. FONTES E ESTILOS OTIMIZADOS (Substituindo Tailwind CDN por CSS Puro) -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Inter', sans-serif; background-color: #0a0a0a; color: #ffffff; }
-        .bg-grain { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: url('https://grainy-gradients.vercel.app/noise.svg'); opacity: 0.03; pointer-events: none; z-index: 9999; }
-        .text-gradient { background: linear-gradient(to right, #fff, #aaa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .scroll-mt { scroll-margin-top: 5rem; }
-        .card-art { background: rgba(23, 23, 23, 0.6); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.05); transition: all 0.5s ease; }
-        .card-art:hover { border-color: rgba(255,255,255,0.3); transform: translateY(-5px); }
+        /* CSS RESET & VARS */
+        :root { --bg: #0a0a0a; --accent: #16a34a; --text-muted: #a3a3a3; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: #ffffff; overflow-x: hidden; }
         
-        .social-icon { 
-            color: rgba(255,255,255,0.7); 
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-        }
-        .social-icon:hover { 
-            color: #ffffff; 
-            transform: scale(1.3); 
-            filter: drop-shadow(0 0 15px rgba(255,255,255,0.6));
-        }
-
+        /* UTILIDADES (Extraídas do Tailwind) */
+        .max-w-7xl { max-width: 80rem; margin: 0 auto; }
+        .flex { display: flex; }
+        .grid { display: grid; }
+        .hidden { display: none; }
+        .relative { position: relative; }
+        .fixed { position: fixed; }
+        .items-center { align-items: center; }
+        .justify-center { justify-content: center; }
+        .justify-between { justify-content: space-between; }
+        .text-center { text-align: center; }
+        .uppercase { text-transform: uppercase; }
+        .tracking-tighter { letter-spacing: -0.05em; }
+        .tracking-widest { letter-spacing: 0.1em; }
+        .font-bold { font-weight: 700; }
+        .font-light { font-weight: 300; }
+        .italic { font-style: italic; }
+        .rounded-full { border-radius: 9999px; }
+        .rounded-3xl { border-radius: 1.5rem; }
+        .rounded-2xl { border-radius: 1rem; }
+        .overflow-hidden { overflow: hidden; }
+        .transition-all { transition: all 0.4s ease; }
+        .grayscale { filter: grayscale(100%); }
+        .grayscale:hover { filter: grayscale(0); }
+        .shadow-xl { box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1); }
+        
+        /* CUSTOM STUDIO STYLES */
+        .bg-grain { position: fixed; inset: 0; background: url('https://grainy-gradients.vercel.app/noise.svg'); opacity: 0.03; pointer-events: none; z-index: 9999; }
+        .text-gradient { background: linear-gradient(to right, #fff, #888); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        /* NAV OTIMIZADO */
+        nav { width: 100%; z-index: 50; height: 5rem; border-bottom: 1px solid rgba(255,255,255,0.05); background: rgba(0,0,0,0.5); backdrop-filter: blur(12px); display: flex; align-items: center; padding: 0 1.5rem; }
+        nav a { text-decoration: none; color: var(--text-muted); font-size: 10px; transition: color 0.3s; }
+        nav a:hover { color: white; }
+        
+        /* HERO OTIMIZADO (Imagens diferentes para PC e Celular) */
         .hero-bg {
-            position: relative;
-            background-image: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(10,10,10,1)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop');
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #000;
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
+            /* Versão Celular (Menor e mais comprimida) */
+            background-image: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(10,10,10,1)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=60&w=800&auto=format&fit=crop');
         }
+        @media (min-width: 1024px) {
+            .hero-bg {
+                /* Versão PC (Alta Definição) */
+                background-image: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(10,10,10,1)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=75&w=1920&auto=format&fit=crop');
+            }
+            .md-flex { display: flex; gap: 2.5rem; }
+            .md-grid-2 { grid-template-columns: repeat(2, 1fr); }
+            .md-grid-4 { grid-template-columns: repeat(4, 1fr); }
+            .md-text-left { text-align: left; }
+            .md-text-8xl { font-size: 6rem; }
+        }
+
+        /* COMPONENTES */
+        .social-icon { color: rgba(255,255,255,0.7); display: inline-flex; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .social-icon:hover { color: #ffffff; transform: scale(1.3); filter: drop-shadow(0 0 15px rgba(255,255,255,0.6)); }
         
-        .hero-overlay {
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at 50% 50%, transparent 0%, rgba(0,0,0,0.7) 100%);
-            pointer-events: none;
+        .card-art { background: rgba(23, 23, 23, 0.6); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.05); padding: 1rem; border-radius: 2rem; }
+        .card-art:hover { border-color: rgba(255,255,255,0.3); transform: translateY(-5px); }
+
+        .btn-whatsapp {
+            background: #16a34a;
+            color: white;
+            padding: 1.25rem 2.5rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+            box-shadow: 0 10px 30px -10px rgba(22, 163, 74, 0.5);
+            animation: pulse-soft 3s infinite ease-in-out;
         }
 
         @keyframes pulse-soft {
             0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.4); }
             50% { transform: scale(1.05); box-shadow: 0 0 20px 5px rgba(22, 163, 74, 0.2); }
         }
-        .animate-whatsapp { animation: pulse-soft 3s infinite ease-in-out; }
+        
+        .aspect-video { aspect-ratio: 16 / 9; }
+        .aspect-square { aspect-ratio: 1 / 1; }
+        
+        @keyframes pulse-loading { 0%, 100% { opacity: 0.5; } 50% { opacity: 0.2; } }
+        .animate-pulse { animation: pulse-loading 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
     </style>
 <link rel="stylesheet" href="/index.css">
 </head>
-<body class="overflow-x-hidden selection:bg-white selection:text-black">
+<body>
     <div class="bg-grain"></div>
 
-    <nav class="fixed w-full z-50 transition-all duration-500 border-b border-white/5 bg-black/50 backdrop-blur-md" id="main-nav">
-        <div class="max-w-7xl mx-auto px-6 lg:px-12">
-            <div class="flex justify-between items-center h-20">
-                <a href="#home" class="text-xl font-bold tracking-tighter">HUMANO<span class="text-neutral-500 font-light italic">Studio</span></a>
-                <div class="hidden md:flex items-center space-x-10">
-                    <a href="#home" class="text-neutral-400 hover:text-white text-[10px] uppercase tracking-widest">Início</a>
-                    <a href="bio.html" class="text-neutral-400 hover:text-white text-[10px] uppercase tracking-widest">Bio & Portfólio</a>
-                    <a href="#portfolio" class="text-neutral-400 hover:text-white text-[10px] uppercase tracking-widest">Trabalhos</a>
-                    <a href="#galeria" class="text-neutral-400 hover:text-white text-[10px] uppercase tracking-widest">Estúdio</a>
-                    <a href="admin.html" class="text-neutral-600 hover:text-white text-[9px] uppercase border border-white/10 px-3 py-1 rounded">Admin</a>
-                </div>
+    <nav class="fixed">
+        <div class="max-w-7xl flex justify-between items-center w-full">
+            <a href="#home" style="font-size: 1.25rem; font-weight: 700; color: white;">HUMANO<span style="color: #737373; font-weight: 300; font-style: italic;">Studio</span></a>
+            <div class="hidden md-flex">
+                <a href="#home" class="tracking-widest uppercase">Início</a>
+                <a href="bio.html" class="tracking-widest uppercase">Bio & Portfólio</a>
+                <a href="#portfolio" class="tracking-widest uppercase">Trabalhos</a>
+                <a href="#galeria" class="tracking-widest uppercase">Estúdio</a>
+                <a href="admin.html" style="border: 1px solid rgba(255,255,255,0.1); padding: 0.25rem 0.75rem; border-radius: 4px;">Admin</a>
             </div>
         </div>
     </nav>
 
-    <section id="home" class="relative min-h-screen flex items-center justify-center px-6 hero-bg">
-        <div class="hero-overlay"></div>
-        <div class="relative z-10 text-center max-w-5xl">
-            <h2 class="text-5xl md:text-8xl font-bold tracking-tighter mb-8 leading-none">A Arte de ser <br><span class="text-gradient">HUMANO.</span></h2>
-            <p class="text-base md:text-xl text-white/80 font-light mb-12 max-w-xl mx-auto tracking-wide">Onde a essência humana encontra a vibração da arte e a tecnologia do som.</p>
+    <section id="home" class="hero-bg relative">
+        <div style="position: absolute; inset: 0; background: radial-gradient(circle at 50% 50%, transparent 0%, rgba(0,0,0,0.7) 100%); pointer-events: none;"></div>
+        <div class="relative text-center max-w-7xl px-6">
+            <h2 class="font-bold tracking-tighter mb-8 md-text-8xl" style="font-size: 3rem; line-height: 1;">A Arte de ser <br><span class="text-gradient">HUMANO.</span></h2>
+            <p style="font-size: 1rem; color: rgba(255,255,255,0.8); font-weight: 300; margin-bottom: 3rem; max-width: 32rem; margin-left: auto; margin-right: auto; line-height: 1.6;">Onde a essência humana encontra a vibração da arte e a tecnologia do som.</p>
             
-            <!-- Redes Sociais em Linha Única -->
-            <div class="flex flex-nowrap items-center justify-center gap-6 md:gap-12 mt-4 px-4">
-                <a href="https://open.spotify.com/intl-pt/artist/2BIEgnchM2L1arz2Liw1aY?si=8YzSiKpKROOtqblXn5SA0Q" target="_blank" class="social-icon" title="Spotify">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 md:w-9 md:h-9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="10"/><path d="M8 14.5c2.5-1 5.5-1 8 0"/><path d="M7 11.5c3-1.5 7-1.5 10 0"/><path d="M6 8.5c4-2 9-2 13 0"/>
-                    </svg>
+            <!-- Redes Sociais em Linha Única Mobile e PC -->
+            <div class="flex items-center justify-center" style="gap: 1.5rem; flex-wrap: nowrap;">
+                <a href="https://open.spotify.com/intl-pt/artist/2BIEgnchM2L1arz2Liw1aY" target="_blank" class="social-icon" title="Spotify">
+                    <svg style="width: 1.75rem; height: 1.75rem;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14.5c2.5-1 5.5-1 8 0"/><path d="M7 11.5c3-1.5 7-1.5 10 0"/><path d="M6 8.5c4-2 9-2 13 0"/></svg>
                 </a>
                 <a href="https://www.youtube.com/channel/UCYYT-iBxv3t2bA2eMfjVWKw" target="_blank" class="social-icon" title="YouTube">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 md:w-9 md:h-9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 2-2 68.4 68.4 0 0 1 15 0 2 2 0 0 1 2 2 24.12 24.12 0 0 1 0 10 2 2 0 0 1-2 2 68.4 68.4 0 0 1-15 0 2 2 0 0 1-2-2Z"/><path d="m10 15 5-3-5-3z"/>
-                    </svg>
+                    <svg style="width: 1.75rem; height: 1.75rem;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 2-2 68.4 68.4 0 0 1 15 0 2 2 0 0 1 2 2 24.12 24.12 0 0 1 0 10 2 2 0 0 1-2 2 68.4 68.4 0 0 1-15 0 2 2 0 0 1-2-2Z"/><path d="m10 15 5-3-5-3z"/></svg>
                 </a>
                 <a href="https://www.instagram.com/fabio.humano/" target="_blank" class="social-icon" title="Instagram">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 md:w-8 md:h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
-                </a>
-                <a href="https://www.tiktok.com/@fabiohumano" target="_blank" class="social-icon" title="TikTok">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 md:w-8 md:h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
-                </a>
-                <a href="https://www.facebook.com/fabiobndtt" target="_blank" class="social-icon" title="Facebook">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 md:w-8 md:h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    <svg style="width: 1.75rem; height: 1.75rem;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
                 </a>
                 <a href="https://wa.me/5532991064759" target="_blank" class="social-icon" title="WhatsApp">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 md:w-8 md:h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <svg style="width: 1.75rem; height: 1.75rem;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1-7.6-7.6 8.38 8.38 0 0 1 3.8.9L21 4.5z"/>
-                        <!-- Carinha sorrindo HUMANA -->
                         <circle cx="11" cy="11.5" r="0.5" fill="currentColor"/><circle cx="15" cy="11.5" r="0.5" fill="currentColor"/>
                         <path d="M10 14.5c1 1.5 4 1.5 6 0" stroke-width="1.2"/>
                     </svg>
@@ -146,32 +181,31 @@
         </div>
     </section>
 
-    <section id="portfolio" class="py-32 bg-neutral-950 px-6 scroll-mt">
-        <div class="max-w-7xl mx-auto text-center md:text-left">
-            <div class="flex justify-between items-end mb-16">
-                <h3 class="text-3xl md:text-5xl font-bold tracking-tighter">Trabalhos <span class="text-neutral-600 italic">Recentes</span></h3>
-                <a href="bio.html" class="text-[10px] uppercase tracking-widest border-b border-white/20 pb-1 hover:border-white transition-colors">Ver Portfólio Completo</a>
+    <section id="portfolio" class="py-32 bg-neutral-950 px-6" style="padding-top: 8rem; padding-bottom: 8rem;">
+        <div class="max-w-7xl text-center md-text-left">
+            <div class="flex justify-between items-end mb-16" style="margin-bottom: 4rem;">
+                <h3 style="font-size: 2rem; font-weight: 700; letter-spacing: -0.05em;">Trabalhos <span style="color: #525252; font-style: italic;">Recentes</span></h3>
+                <a href="bio.html" style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; border-bottom: 1px solid rgba(255,255,255,0.2); text-decoration: none; color: white;">Ver Portfólio Completo</a>
             </div>
-            <div id="videos-container" class="grid md:grid-cols-2 gap-10">
-                <div class="animate-pulse bg-neutral-900 h-64 rounded-3xl"></div>
-                <div class="animate-pulse bg-neutral-900 h-64 rounded-3xl"></div>
+            <div id="videos-container" class="grid md-grid-2" style="gap: 2.5rem;">
+                <div class="animate-pulse" style="background: #171717; height: 16rem; border-radius: 1.5rem;"></div>
+                <div class="animate-pulse" style="background: #171717; height: 16rem; border-radius: 1.5rem;"></div>
             </div>
         </div>
     </section>
 
-    <section id="galeria" class="py-32 bg-black px-6 scroll-mt text-center md:text-left">
-        <div class="max-w-7xl mx-auto">
-            <h3 class="text-3xl md:text-5xl font-bold tracking-tighter mb-16 italic">No <span class="text-neutral-600">Estúdio</span></h3>
-            <div id="galeria-container" class="grid grid-cols-2 md:grid-cols-4 gap-6"></div>
+    <section id="galeria" class="py-32 bg-black px-6 text-center md-text-left">
+        <div class="max-w-7xl">
+            <h3 style="font-size: 2rem; font-weight: 700; margin-bottom: 4rem; font-style: italic;">No <span style="color: #525252;">Estúdio</span></h3>
+            <div id="galeria-container" class="grid md-grid-4" style="grid-template-columns: repeat(2, 1fr); gap: 1.5rem;"></div>
         </div>
     </section>
 
-    <footer class="py-24 border-t border-white/5 bg-black text-center px-6 flex flex-col items-center">
-        <h3 class="text-3xl md:text-6xl font-bold hover:text-neutral-400 transition-colors uppercase tracking-tighter mb-8">VAMOS CRIAR JUNTOS?</h3>
+    <footer class="py-24 bg-black text-center px-6 flex items-center" style="border-top: 1px solid rgba(255,255,255,0.05); flex-direction: column;">
+        <h3 class="font-bold uppercase tracking-tighter mb-8" style="font-size: 2rem; transition: color 0.3s;">VAMOS CRIAR JUNTOS?</h3>
         
-        <!-- Botão WhatsApp com Carinha -->
-        <a href="https://wa.me/5532991064759" target="_blank" class="animate-whatsapp inline-flex items-center gap-3 bg-green-600 hover:bg-green-500 text-white px-10 py-5 rounded-full text-sm font-bold uppercase tracking-[0.2em] transition-all hover:scale-105 shadow-xl shadow-green-900/20">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <a href="https://wa.me/5532991064759" target="_blank" class="btn-whatsapp rounded-full shadow-xl">
+            <svg style="width: 1.5rem; height: 1.5rem;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1-7.6-7.6 8.38 8.38 0 0 1 3.8.9L21 4.5z"/>
                 <circle cx="11" cy="11.5" r="0.6" fill="currentColor"/><circle cx="15" cy="11.5" r="0.6" fill="currentColor"/>
                 <path d="M10 14.5c1 1.5 4 1.5 6 0" stroke-width="1.5"/>
@@ -179,7 +213,7 @@
             WhatsApp
         </a>
 
-        <p class="mt-16 text-neutral-600 text-[9px] uppercase tracking-[0.3em]">© 2024 HUMANO Studio • Fabio Benedetti</p>
+        <p style="margin-top: 4rem; color: #525252; font-size: 9px; text-transform: uppercase; letter-spacing: 0.3em;">© 2024 HUMANO Studio • Fabio Benedetti</p>
     </footer>
 
     <script type="module">
@@ -199,38 +233,40 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
+        // Otimização de Vídeos: Carregamento assíncrono e deferido
         onSnapshot(query(collection(db, "videos"), orderBy("timestamp", "desc"), limit(4)), (snapshot) => {
             const container = document.getElementById('videos-container');
             container.innerHTML = '';
             snapshot.forEach((doc) => {
                 const video = doc.data();
                 let videoId = '';
-                const url = video.url;
                 try {
+                    const url = video.url;
                     if (url.includes('v=')) videoId = url.split('v=')[1].split('&')[0];
                     else if (url.includes('youtu.be/')) videoId = url.split('youtu.be/')[1].split('?')[0];
                     else videoId = url.split('/').pop();
 
                     container.innerHTML += `
-                        <div class="card-art p-4 rounded-[2rem] overflow-hidden group">
-                            <div class="aspect-video mb-6 overflow-hidden rounded-2xl">
-                                <iframe src="https://www.youtube.com/embed/${videoId}" class="w-full h-full" frameborder="0" allowfullscreen></iframe>
+                        <div class="card-art" style="overflow: hidden;">
+                            <div class="aspect-video rounded-2xl" style="overflow: hidden; margin-bottom: 1.5rem;">
+                                <iframe src="https://www.youtube.com/embed/${videoId}" style="width:100%; height:100%; border:0;" allowfullscreen loading="lazy"></iframe>
                             </div>
-                            <h4 class="text-sm font-semibold px-2 uppercase tracking-widest text-neutral-400 group-hover:text-white transition-colors">${video.titulo || 'Produção HUMANO'}</h4>
+                            <h4 style="font-size: 0.875rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: #a3a3a3;">${video.titulo || 'Produção HUMANO'}</h4>
                         </div>
                     `;
                 } catch(e) {}
             });
         });
 
+        // Otimização de Galeria: Grayscale suave e lazy loading
         onSnapshot(query(collection(db, "fotos"), orderBy("timestamp", "desc"), limit(8)), (snapshot) => {
             const container = document.getElementById('galeria-container');
             container.innerHTML = '';
             snapshot.forEach((doc) => {
                 const foto = doc.data();
                 container.innerHTML += `
-                    <div class="aspect-square overflow-hidden rounded-2xl border border-white/5 hover:border-white/20 transition-all cursor-crosshair">
-                        <img src="${foto.url}" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000" loading="lazy">
+                    <div class="aspect-square rounded-2xl grayscale" style="overflow: hidden; border: 1px solid rgba(255,255,255,0.05); transition: border 0.3s; cursor: crosshair;">
+                        <img src="${foto.url}" style="width:100%; height:100%; object-fit: cover; transition: filter 1s;" loading="lazy" alt="Studio Photo">
                     </div>
                 `;
             });
